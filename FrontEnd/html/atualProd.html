@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/atualProduto.js" defer></script>
+    <title>Sistema</title>
+</head>
+
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-header-content">
+                <div class="admin-logo">
+                    <h1><i class="fas fa-edit"></i> TechParts Admin</h1>
+                </div>
+                <div class="admin-user-info">
+                    <span id="adminUserName"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="admin-nav">
+        <ul>
+            <li><a href="./produto.html">Gestão Produto</a></li>
+            <li><a href="./atualProd.html" class="active">Atualizar Produto</a></li>
+            <li><a href="./delProd.html">Apagar Produto</a></li>
+            <li><a href="./consultaProd.html">Consultar Produto</a></li>
+            <li><a href="../index.html">Voltar ao Site</a></li>
+        </ul>
+    </nav>
+
+    <main class="admin-main">
+        <div class="admin-container">
+            <section class="admin-section">
+                <h2><i class="fas fa-edit"></i> Atualizar Produto</h2>
+                <form class="admin-form">
+                    <div class="admin-form-group">
+                        <label for="codProduto">Código do Produto *</label>
+                        <input type="number" id="codProduto" required placeholder="Ex: 1">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="nome">Nome do Produto *</label>
+                        <input type="text" id="nome" required placeholder="Ex: Placa de Vídeo RTX 3060">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="modelo">Modelo *</label>
+                        <input type="text" id="modelo" required placeholder="Ex: RTX 3060 Ti">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="categoria">Categoria *</label>
+                        <select id="categoria" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="CPU">CPU</option>
+                            <option value="GPU">GPU</option>
+                            <option value="RAM">RAM</option>
+                            <option value="Motherboard">Placa-Mãe</option>
+                            <option value="SSD">SSD</option>
+                            <option value="HDD">HD</option>
+                            <option value="PSU">Fonte</option>
+                            <option value="Case">Gabinete</option>
+                            <option value="Cooler">Cooler</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Keyboard">Teclado</option>
+                            <option value="Mouse">Mouse</option>
+                            <option value="Other">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="marca">Marca *</label>
+                        <input type="text" id="marca" required placeholder="Ex: NVIDIA">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="preco">Preço Unitário (R$) *</label>
+                        <input type="number" id="preco" step="0.01" required placeholder="0.00">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="imagem_url">URL da Imagem</label>
+                        <input type="text" id="imagem_url" placeholder="https://exemplo.com/imagem.jpg">
+                    </div>
+
+                    <div class="admin-form-group admin-form-group-full">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" rows="4" placeholder="Descrição detalhada do produto..."></textarea>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="ativo">
+                            <input type="checkbox" id="ativo" checked> Produto Ativo
+                        </label>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <button type="submit" id="atualProd" class="admin-btn">
+                            <i class="fas fa-save"></i> Atualizar Produto
+                        </button>
+                    </div>
+                </form>
+                <div id="resProd" class="admin-message"></div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

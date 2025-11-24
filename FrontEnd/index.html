@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="./js/app.js" defer></script>
+    <title>TechParts - Peças de Computador</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-microchip"></i> TechParts</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Buscar produtos...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <button id="cartBtn" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount">0</span>
+                    </button>
+                    <div class="user-menu">
+                        <a href="./html/login.html" id="loginLink">Login</a>
+                        <div id="userInfo" class="user-info" style="display: none;">
+                            <span id="userName"></span>
+                            <button id="logoutBtn">Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#" data-category="all">Todos</a></li>
+                <li><a href="#" data-category="CPU">CPU</a></li>
+                <li><a href="#" data-category="GPU">GPU</a></li>
+                <li><a href="#" data-category="RAM">RAM</a></li>
+                <li><a href="#" data-category="Motherboard">Placa-Mãe</a></li>
+                <li><a href="#" data-category="SSD">SSD</a></li>
+                <li><a href="#" data-category="HDD">HD</a></li>
+                <li><a href="#" data-category="PSU">Fonte</a></li>
+                <li><a href="#" data-category="Case">Gabinete</a></li>
+                <li><a href="#" data-category="Cooler">Cooler</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>As Melhores Peças para Seu PC</h2>
+                <p>Encontre componentes de alta qualidade para montar ou atualizar seu computador</p>
+                <button class="cta-btn" onclick="scrollToProducts()">Ver Produtos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Produtos em Destaque</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+            <div class="loading" id="loading">Carregando produtos...</div>
+            <div class="error" id="error" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Carrinho</h3>
+            <span class="cart-close">&times;</span>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: R$ <span id="cartTotal">0.00</span></strong>
+            </div>
+            <button id="checkoutBtn" class="checkout-btn">Finalizar</button>
+        </div>
+    </div>
+
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Detalhes do Produto</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="productDetails">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel (hidden by default) -->
+    <div id="adminPanel" style="display: none;">
+        <button id="adminBtn" class="admin-btn">Painel Admin</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>TechParts</h4>
+                    <p>As melhores peças para seu computador</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a href="#" data-category="CPU">Processadores</a></li>
+                        <li><a href="#" data-category="GPU">Placas de Vídeo</a></li>
+                        <li><a href="#" data-category="RAM">Memória RAM</a></li>
+                        <li><a href="#" data-category="SSD">Armazenamento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-envelope"></i> contato@techparts.com</p>
+                    <p><i class="fas fa-phone"></i> (11) 9999-9999</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechParts. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

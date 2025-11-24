@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../js/checkout.js" defer></script>
+    <title>Finalizar Compra - TechParts</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-microchip"></i> TechParts</h1>
+                </div>
+                <div class="header-actions">
+                    <a href="../index.html" class="back-link">Voltar à Loja</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding: 40px 0; background: #f8f9fa;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center; margin-bottom: 30px;">Finalizar Compra</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- Order Summary -->
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <h3>Resumo do Pedido</h3>
+                        <div id="orderSummary">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                        <div style="border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px;">
+                            <strong>Total: R$ <span id="checkoutTotal">0.00</span></strong>
+                        </div>
+                    </div>
+
+                    <!-- Address Form -->
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <h3>Endereço de Entrega</h3>
+                        <form id="checkoutForm">
+                            <div style="margin-bottom: 15px;">
+                                <label for="cep">CEP *</label>
+                                <input type="text" id="cep" required placeholder="00000-000">
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="rua">Rua *</label>
+                                <input type="text" id="rua" required placeholder="Nome da rua">
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="numero">Número *</label>
+                                <input type="text" id="numero" required placeholder="123">
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" id="complemento" placeholder="Apto, bloco, etc.">
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="bairro">Bairro *</label>
+                                <input type="text" id="bairro" required placeholder="Nome do bairro">
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="cidade">Cidade *</label>
+                                <input type="text" id="cidade" required placeholder="Nome da cidade">
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="estado">Estado *</label>
+                                <select id="estado" required>
+                                    <option value="">Selecione</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label for="pagamento">Forma de Pagamento *</label>
+                                <select id="pagamento" required>
+                                    <option value="">Selecione</option>
+                                    <option value="cartao">Cartão de Crédito</option>
+                                    <option value="boleto">Boleto Bancário</option>
+                                    <option value="pix">PIX</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" style="width: 100%; background: #28a745; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                                <i class="fas fa-check"></i> Confirmar Pedido
+                            </button>
+                        </form>
+                        <div id="checkoutMessage"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

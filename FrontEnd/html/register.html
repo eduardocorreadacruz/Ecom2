@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../js/register.js" defer></script>
+    <title>Cadastro - TechParts</title>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1><i class="fas fa-microchip"></i> TechParts</h1>
+                <p>Criar sua conta</p>
+            </div>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" id="nome" required placeholder="Seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" required placeholder="(11) 99999-9999">
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" required placeholder="123.456.789-00">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" required placeholder="Sua senha">
+                </div>
+
+                <button type="submit" class="btn-primary">Cadastrar</button>
+            </form>
+
+            <div class="auth-links">
+                <p>Já tem conta? <a href="login.html">Faça login</a></p>
+                <p><a href="index.html">Voltar ao início</a></p>
+            </div>
+
+            <div id="resRegister" class="message"></div>
+        </div>
+    </div>
+</body>
+</html>
