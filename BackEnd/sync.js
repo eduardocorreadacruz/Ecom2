@@ -25,5 +25,4 @@ async function syncDataBase(){
     }
 }
 
-// Chamar a função para sincronizar o banco de dados
 syncDataBase()

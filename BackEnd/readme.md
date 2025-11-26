@@ -1,285 +1,381 @@
-# 🧱 1. E-commerce API (em desenvolvimento)
+# 🛒 TechParts E-Commerce - Sistema Completo
 
-Uma API modular para autenticação, cadastro e gestão de usuários, construída com arquitetura escalável, organizada e preparada para crescimento contínuo.
+Um sistema completo de e-commerce para venda de peças de computador, desenvolvido com arquitetura moderna e escalável.
 
----
+## 📋 Visão Geral
 
-# 🧩 2. Descrição
+O TechParts é uma plataforma completa de e-commerce que inclui:
 
-Este projeto tem como objetivo fornecer a base de um sistema de e-commerce moderno, iniciando pelo módulo de **usuários, autenticação e autorização**, permitindo:
+- **Frontend**: Interface responsiva para clientes e administradores
+- **Backend**: API RESTful com autenticação JWT
+- **Banco de Dados**: MySQL/MariaDB com relacionamentos complexos
+- **Funcionalidades**: Catálogo de produtos, carrinho de compras, checkout, gestão de estoque, painel administrativo
 
-- Cadastro de usuários
-- Login com validação de credenciais
-- Emissão de token JWT para sessões autenticadas
-- Organização do código em camadas independentes
-- Estrutura flexível para evolução futura
+## 🚀 Funcionalidades
 
-## 🎯 Problema que resolve
+### 👤 Usuários
+- Cadastro e login de usuários
+- Autenticação JWT
+- Perfis de usuário (Cliente/Administrador)
+- Validação de CPF
 
-API em Node.js quando cresce sem organização pode sofrer com:
+### 🛍️ Produtos
+- Catálogo completo de peças de computador
+- Categorias: CPU, GPU, RAM, Placa-Mãe, SSD, HDD, Fonte, Gabinete, Cooler
+- Pesquisa e filtros por categoria
+- Detalhes técnicos dos produtos
+- Imagens e descrições
 
-- Controllers cheios e difíceis de manter
-- Regras de negócio misturadas com lógica HTTP
-- Código com alto acoplamento
-- Dificuldade de testar e dar manutenção
+### 🛒 Carrinho e Checkout
+- Carrinho de compras persistente
+- Sistema de checkout completo
+- Cálculo automático de frete
+- Validação de estoque em tempo real
+- Endereço de entrega com ViaCEP
 
-Este projeto separa responsabilidades em camadas, facilitando:
+### 📦 Gestão de Estoque
+- Controle de quantidade por produto
+- Alertas de estoque baixo
+- Movimentação de entrada/saída
+- Integração automática com vendas
 
-- Reutilização
-- Testes unitários
-- Evolução de funcionalidades
-- Compreensão do fluxo completo
+### 👨‍💼 Painel Administrativo
+- Gestão completa de produtos (CRUD)
+- Controle de estoque
+- Gerenciamento de pedidos
+- Relatórios e estatísticas
 
----
+### 📊 Pedidos
+- Histórico completo de pedidos
+- Rastreamento de status
+- Detalhes de entrega
+- Validação de estoque antes da venda
 
-# ⚙️ 3. Tecnologias Utilizadas
+## 🏗️ Arquitetura
 
-- Node.js
-- Express.js
-- Sequelize (ORM)
-- MySQL / MariaDB
-- JWT
-- bcrypt
-- dotenv
-- Postman (testes)
-- (futuramente) HTML/CSS/JS para o front
-
----
-
-# 📁 4. Estrutura de Pastas do Projeto
-
-A estrutura segue uma arquitetura em camadas mantendo funções bem separadas.
-
+### Backend
 ```
 backend/
-├─ index.js
-├─ src/
-│  ├─ server/
-│  ├─ routes/
-│  ├─ controllers/
-│  ├─ services/
-│  ├─ models/
-│  ├─ utils/
-│  └─ db/
+├── src/
+│   ├── controllers/     # Controladores HTTP
+│   ├── services/        # Regras de negócio
+│   ├── models/          # Modelos de dados (Sequelize)
+│   ├── routes/          # Definição de rotas
+│   ├── middlewares/     # Middlewares de autenticação/autorização
+│   ├── utils/           # Utilitários (JWT, validação, criptografia)
+│   ├── db/              # Configuração do banco
+│   └── server/          # Configuração do Express
+├── index.js            # Ponto de entrada
+├── index_local.js      # Versão local (desenvolvimento)
+└── sync.js            # Sincronização do banco
 ```
 
----
-
-# 🔁 5. Fluxo de Execução da Aplicação
-
-Quando uma requisição HTTP chega, o fluxo segue:
-
+### Frontend
 ```
-Rota (routes/)
-   ↓
-Controller (controllers/)
-   ↓
-Service (services/)
-   ↓
-Model (models/)
-   ↓
-Banco de Dados
-```
-
-### 📌 Papel de cada camada
-
-- **routes/**  
-  Define endpoints e encaminha para o controller correto.
-
-- **controllers/**  
-  Recebem dados HTTP, validam o necessário e chamam os serviços.  
-  Não possuem regras de negócio.
-
-- **services/**  
-  Contêm regras de negócio (Use Cases), como:
-
-  - validar senha
-  - gerar token
-  - chamar o model
-  - aplicar validações de domínio
-
-- **models/**  
-  Acessam o banco de dados via Sequelize.
-
-- **db/**  
-  Configuração da conexão com MySQL/MariaDB.
-
-- **utils/**  
-  Funções auxiliares como:
-
-  - validação
-  - bcrypt
-  - JWT
-  - formatações
-
-Essa estrutura reduz acoplamento e facilita evolução.
-
----
-
-# 🏛 6. Arquitetura do Projeto
-
-Este projeto **não utiliza o MVC clássico**, pois no MVC tradicional:
-
-- Controllers podem crescer e acumular lógica
-- Models podem misturar regras de domínio com persistência
-- Escalar para sistemas maiores se torna complexo
-
-## ✔ O que foi adotado
-
-Utilizamos uma **Arquitetura em Camadas com Service Layer**, inspirada na:
-
-> **Clean Architecture de Robert C. Martin (Uncle Bob)**
-
-Aplicada de forma prática ao Node.js.
-
-Isso pode ser descrito como:
-
-> *Clean Architecture modular baseada em camadas*
-
-### Benefícios
-
-- Baixo acoplamento
-- Facilita testes
-- Escalável para domínios maiores
-- Separação clara de responsabilidades
-
----
-
-# 💡 7. Princípios Relacionados (SOLID)
-
-Alguns princípios aplicados:
-
-### **S — Single Responsibility Principle**
-Cada arquivo tem apenas uma responsabilidade.  
-Services cuidam da regra de negócio, controllers apenas recebem requisições.
-
-### **O — Open/Closed Principle**
-O sistema permite extensão sem alteração de blocos existentes.
-
-### **D — Dependency Inversion Principle**
-Camadas de alto nível (como Service) não dependem diretamente de detalhes internos (como banco).
-
----
-
-# 🔒 8. Autenticação e Autorização
-
-A API inclui:
-
-- Cadastro de usuário
-- Login com e-mail e senha
-- Hash de senha com **bcrypt**
-- Token JWT contendo:
-  - id
-  - email
-  - tipo de usuário
-
-Rotas protegidas exigem envio:
-
-```
-Authorization: Bearer SEU_TOKEN_AQUI
+frontend/
+├── index.html          # Página principal (catálogo)
+├── css/
+│   ├── style.css       # Estilos principais
+│   └── admin.css       # Estilos do painel admin
+├── js/
+│   ├── app.js          # Lógica da página principal
+│   ├── checkout.js     # Lógica do checkout
+│   └── cadProduto.js   # Gestão de produtos (admin)
+└── html/
+    ├── login.html      # Login
+    ├── register.html   # Cadastro
+    ├── produto.html    # Gestão de produtos
+    ├── checkout.html   # Checkout
+    └── outros...
 ```
 
----
+## 🛠️ Tecnologias Utilizadas
 
-# 💾 9. Como Rodar o Projeto
+### Backend
+- **Node.js** - Runtime JavaScript
+- **Express.js** - Framework web
+- **Sequelize** - ORM para banco de dados
+- **MySQL/MariaDB** - Banco de dados relacional
+- **JWT** - Autenticação baseada em tokens
+- **bcrypt** - Hash de senhas
+- **CORS** - Controle de acesso cross-origin
 
-### 1️⃣ Clonar o repositório
+### Frontend
+- **HTML5** - Estrutura das páginas
+- **CSS3** - Estilização responsiva
+- **JavaScript (ES6+)** - Interatividade
+- **Font Awesome** - Ícones
 
+### Desenvolvimento
+- **Postman** - Testes de API
+- **Git** - Controle de versão
+- **VS Code** - Ambiente de desenvolvimento
+
+## 📊 Modelo de Dados
+
+### Principais Tabelas
+
+#### 👤 Usuários (`usuarios`)
+```sql
+- codUsuario (PK)
+- nome
+- email
+- telefone
+- cpf
+- senha (hash)
+- tipo_usuario (CLIENTE/ADMIN)
+- ativo
+- createdAt/updatedAt
 ```
-git clone SEU_REPO.git
+
+#### 🛍️ Produtos (`produtos`)
+```sql
+- codProduto (PK)
+- nome
+- modelo
+- categoria
+- marca
+- descricao
+- preco
+- imagem_url
+- ativo
+- createdAt/updatedAt
 ```
 
-### 2️⃣ Instalar dependências
-
+#### 📦 Estoque (`estoques`)
+```sql
+- codEstoque (PK)
+- idProduto (FK → produtos)
+- quantidade_atual
+- quantidade_minima
+- createdAt/updatedAt
 ```
+
+#### 🛒 Pedidos (`pedidos`)
+```sql
+- codPedido (PK)
+- idUsuario (FK → usuarios)
+- valorSubtotal
+- valorFrete
+- valorTotal
+- status
+- createdAt/updatedAt
+```
+
+#### 📋 Itens do Pedido (`itens_pedidos`)
+```sql
+- codItemPedido (PK)
+- idPedido (FK → pedidos)
+- idProduto (FK → produtos)
+- quantidade
+- precoUnitario
+- valorTotalItem
+```
+
+#### 🚚 Entregas (`entregas`)
+```sql
+- codEntrega (PK)
+- idPedido (FK → pedidos)
+- cep
+- logradouro
+- numero
+- complemento
+- bairro
+- localidade
+- uf
+```
+
+## 🔌 API Endpoints
+
+### Autenticação
+```
+POST   /auth/login           # Login de usuário
+POST   /usuario              # Cadastro de usuário
+```
+
+### Produtos
+```
+GET    /produto               # Listar produtos
+POST   /produto               # Criar produto (ADMIN)
+PUT    /produto/:id           # Atualizar produto (ADMIN)
+DELETE /produto/:id           # Deletar produto (ADMIN)
+```
+
+### Pedidos
+```
+GET    /pedido                # Listar pedidos do usuário
+POST   /pedido                # Criar pedido
+GET    /pedido/:id            # Detalhes do pedido
+PATCH  /pedido/:id/status     # Atualizar status (ADMIN)
+GET    /pedido/admin/todos    # Listar todos os pedidos (ADMIN)
+```
+
+### Estoque
+```
+GET    /estoque               # Listar estoques (ADMIN)
+GET    /estoque/:idProduto    # Estoque de produto específico
+POST   /estoque/:idProduto/adicionar  # Adicionar estoque
+POST   /estoque/:idProduto/remover    # Remover estoque
+```
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+- Node.js (v14+)
+- MySQL/MariaDB
+- npm ou yarn
+
+### 1. Clonagem e Instalação
+```bash
+git clone <seu-repositorio>
+cd ecom/BackEnd
 npm install
 ```
 
-### 3️⃣ Configurar `.env`
+### 2. Configuração do Banco
+```bash
+# Criar banco de dados MySQL
+CREATE DATABASE ecom;
 
-Exemplo:
-
-```
+# Configurar variáveis de ambiente (.env)
 DB_HOST=localhost
-DB_USER=root
-DB_PASS=senha
-DB_NAME=ecommerce
-JWT_SECRET=SUA_CHAVE_SECRETA
+DB_USER=seu_usuario
+DB_PASS=sua_senha
+DB_NAME=ecom
+JWT_SECRET=sua_chave_secreta_super_segura
 ```
 
-### 4️⃣ Rodar sincronização do Sequelize (se aplicável)
-
-### 5️⃣ Iniciar servidor
-
+### 3. Sincronização do Banco
+```bash
+# Executar sincronização das tabelas
+node sync.js
 ```
+
+### 4. Executar o Servidor
+```bash
+# Produção
 npm start
+
+# Desenvolvimento (com nodemon)
+npm run dev
 ```
 
----
+### 5. Acessar o Sistema
+- **Frontend**: Abrir `FrontEnd/index.html` no navegador
+- **API**: `http://localhost:3000`
+- **Admin**: Acesse com usuário do tipo ADMIN
 
-# 🧪 10. Como Testar no Postman
+## 🧪 Testando a API
 
-### Cadastro
+### Exemplo: Cadastro de Usuário
+```bash
+POST http://localhost:3000/usuario
+Content-Type: application/json
 
-`POST /usuario`
-
-Body exemplo:
-
-```json
 {
-  "nome": "Carlos",
-  "email": "carlos@gmail.com",
+  "nome": "João Silva",
+  "email": "joao@email.com",
   "telefone": "11999999999",
   "cpf": "52998224725",
-  "senha": "123"
+  "senha": "senha123"
 }
 ```
 
-### Login
+### Exemplo: Login
+```bash
+POST http://localhost:3000/auth/login
+Content-Type: application/json
 
-`POST /auth/login`
-
-Após login bem-sucedido, o token JWT será retornado.
-
-### Salvando token automaticamente no Postman
-
-```js
-let body = pm.response.json();
-
-if (body.token) {
-    pm.environment.set("jwt", body.token);
+{
+  "email": "joao@email.com",
+  "senha": "senha123"
 }
 ```
 
----
+### Exemplo: Criar Produto (ADMIN)
+```bash
+POST http://localhost:3000/produto
+Authorization: Bearer SEU_TOKEN_JWT
+Content-Type: application/json
 
-# 📚 11. Referências
+{
+  "nome": "Placa de Vídeo RTX 3060",
+  "modelo": "RTX 3060",
+  "categoria": "GPU",
+  "marca": "NVIDIA",
+  "preco": 2999.99,
+  "ativo": true
+}
+```
 
-## Sobre Clean Architecture
+## 🎨 Interface do Usuário
 
-- **EngSoftModerna — “Construindo Sistemas com uma Arquitetura Limpa”**  
-  https://engsoftmoderna.info/artigos/arquitetura-limpa.html
+### Página Principal
+- Catálogo de produtos com filtros por categoria
+- Barra de pesquisa
+- Carrinho de compras
+- Menu de usuário
 
-- **Medium — “Fundamentos da Clean Architecture” (Niltone Apontes)**  
-  https://niltoneapontes.medium.com/fundamentos-da-clean-architecture-020eda7f8da1
+### Painel Administrativo
+- Gestão de produtos (CRUD)
+- Controle de estoque
+- Visualização de pedidos
+- Relatórios
 
-- **Zup Blog — “Clean Architecture para Desenvolvedores”**  
-  https://zup.com.br/blog/clean-architecture-arquitetura-limpa/
+### Processo de Compra
+1. Navegação no catálogo
+2. Adição ao carrinho
+3. Checkout com endereço
+4. Confirmação do pedido
 
-Essas referências explicam fundamentos, camadas e como escalar sistemas limpos.
+## 🔒 Segurança
 
----
+- **Hash de Senhas**: bcrypt para armazenamento seguro
+- **JWT Tokens**: Autenticação stateless
+- **Validações**: CPF, dados obrigatórios
+- **Middleware de Autenticação**: Proteção de rotas
+- **Autorização**: Controle de acesso por tipo de usuário
 
-# 💬 12. Autor & Licença
+## 📱 Responsividade
 
-Projeto mantido por **Carlos Roberto da Silva Filho**
+O frontend é totalmente responsivo, funcionando perfeitamente em:
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (320px - 767px)
 
-Distribuído sob a **Licença MIT**, permitindo:
+## 🔄 Fluxo de Dados
 
-- uso comercial
-- modificação
-- redistribuição
+```
+Cliente → Frontend → API → Controller → Service → Model → Banco
+       ←         ←     ←          ←        ←      ←
+```
 
-com apenas obrigatoriedade de manter o aviso de copyright.
+## 📈 Funcionalidades Futuras
+
+- Sistema de avaliações e comentários
+- Lista de desejos (wishlist)
+- Cupons de desconto
+- Integração com gateways de pagamento
+- Notificações por email
+- Rastreamento de pedidos
+- Sistema de recomendações
+- Blog/notícias
+- Chat de suporte
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 👨‍💻 Autor
+
+**Eduardo Corrêa Da Cruz**
 
 ---

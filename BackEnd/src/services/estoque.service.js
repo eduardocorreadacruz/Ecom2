@@ -26,22 +26,13 @@ async function criarEstoque(dados) {
 }
 
 async function listarEstoques() {
-    const estoques = await Estoque.findAll({
-        include: [{
-            model: Produto,
-            attributes: ['codProduto', 'nome', 'modelo', 'preco']
-        }]
-    })
+    const estoques = await Estoque.findAll()
     return estoques
 }
 
 async function buscarEstoquePorProduto(idProduto) {
     const estoque = await Estoque.findOne({
-        where: { idProduto },
-        include: [{
-            model: Produto,
-            attributes: ['codProduto', 'nome', 'modelo', 'preco']
-        }]
+        where: { idProduto }
     })
 
     if (!estoque) {

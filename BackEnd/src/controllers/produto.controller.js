@@ -20,7 +20,19 @@ async function criar(req, res) {
 
 async function listar(req, res) {
     try {
-        const produtos = await listarProdutos()
+        const { status } = req.query
+        let produtos
+
+        if (status === 'inativos') {
+            // Get inactive products
+            const Produto = require('../models/Produto')
+            produtos = await Produto.findAll({
+                where: { ativo: false }
+            })
+        } else {
+            // Get active products (default)
+            produtos = await listarProdutos()
+        }
 
         return res.status(200).json(produtos)
 

@@ -6,7 +6,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "Carlos Roberto da Silva Filho",
+  "author": "Eduardo Corrêa Da Cruz",
   "license": "MIT",
   "description": "Ecommerce",
   "dependencies": {
