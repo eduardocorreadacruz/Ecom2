@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
     
     let resProd = document.getElementById('resProd')
     let resTabela = document.getElementById('resTabela')
+    let resEstoque = document.getElementById('resEstoque')
     let cadProd = document.getElementById('cadProd')
     let adminUserName = document.getElementById('adminUserName')
+    let estoqueForm = document.getElementById('estoqueForm')
 
     let statusLog = localStorage.getItem('statusLog')
     let token = localStorage.getItem('token')
@@ -19,18 +21,26 @@ document.addEventListener('DOMContentLoaded', (e) => {
     }
 
     if (token && currentUser && currentUser.tipo_usuario === 'ADMIN') {
-        // Load products
-        fetch(`http://localhost:3000/produto`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(resp => resp.json())
-        .then(dados => {
-            console.log(dados)
+        // Load products with stock info
+        Promise.all([
+            fetch(`http://localhost:3000/produto`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            }).then(resp => resp.json()),
+            fetch(`http://localhost:3000/estoque`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            }).then(resp => resp.json())
+        ])
+        .then(([produtos, estoques]) => {
+            console.log('Produtos:', produtos)
+            console.log('Estoques:', estoques)
             resTabela.innerHTML = ''
-            resTabela.innerHTML += `<table class="admin-table">${gerarTabela(dados)}</table>`
+            resTabela.innerHTML += `<table class="admin-table">${gerarTabela(produtos, estoques)}</table>`
         })
         .catch((err) => {
             console.error('Erro ao listar os produtos', err)
@@ -88,12 +98,55 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 resProd.className = 'admin-message error'
             })
         })
+
+        // Stock management event
+        estoqueForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            let produtoId = document.getElementById('estoqueProdutoId').value
+            let acao = document.getElementById('estoqueAcao').value
+            let quantidade = document.getElementById('estoqueQuantidade').value
+
+            if (!produtoId || !quantidade || quantidade < 1) {
+                resEstoque.innerHTML = 'Preencha todos os campos corretamente.'
+                resEstoque.className = 'admin-message error'
+                return
+            }
+
+            const endpoint = acao === 'adicionar' ? 'adicionar' : 'remover'
+            const url = `http://localhost:3000/estoque/${produtoId}/${endpoint}`
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ quantidade: parseInt(quantidade) })
+            })
+            .then(resp => resp.json())
+            .then(dados => {
+                console.log(dados)
+                resEstoque.innerHTML = dados.mensagem || `Estoque ${acao === 'adicionar' ? 'adicionado' : 'removido'} com sucesso!`
+                resEstoque.className = 'admin-message success'
+                estoqueForm.reset()
+                setTimeout(() => {
+                    resEstoque.innerHTML = ''
+                    resEstoque.className = ''
+                }, 3000)
+            })
+            .catch((err) => {
+                console.error('Erro ao atualizar estoque', err)
+                resEstoque.innerHTML = 'Erro ao atualizar estoque'
+                resEstoque.className = 'admin-message error'
+            })
+        })
     } else {
         location.href = '../index.html'
     }
 })
 
-function gerarTabela(dados) {
+function gerarTabela(produtos, estoques) {
     let thead = `
     <thead>
         <tr>
@@ -102,7 +155,7 @@ function gerarTabela(dados) {
             <th>Modelo</th>
             <th>Categoria</th>
             <th>Marca</th>
-            <th>Descrição</th>
+            <th>Estoque</th>
             <th>Preço</th>
             <th>Ativo</th>
         </tr>
@@ -110,18 +163,21 @@ function gerarTabela(dados) {
     `
     let tbody = `<tbody>`
 
-    dados.forEach(dad => {
-        const statusClass = dad.ativo ? 'admin-status active' : 'admin-status inactive';
-        const statusText = dad.ativo ? 'Ativo' : 'Inativo';
+    produtos.forEach(produto => {
+        const estoque = estoques.find(e => e.idProduto === produto.codProduto)
+        const quantidadeEstoque = estoque ? estoque.quantidade_atual : 0
+        const statusClass = produto.ativo ? 'admin-status active' : 'admin-status inactive';
+        const statusText = produto.ativo ? 'Ativo' : 'Inativo';
+
         tbody += `
         <tr>
-            <td>${dad.codProduto}</td>
-            <td>${dad.nome}</td>
-            <td>${dad.modelo}</td>
-            <td>${dad.categoria}</td>
-            <td>${dad.marca}</td>
-            <td>${dad.descricao || '-'}</td>
-            <td>R$ ${parseFloat(dad.preco).toFixed(2)}</td>
+            <td>${produto.codProduto}</td>
+            <td>${produto.nome}</td>
+            <td>${produto.modelo}</td>
+            <td>${produto.categoria}</td>
+            <td>${produto.marca}</td>
+            <td>${quantidadeEstoque}</td>
+            <td>R$ ${parseFloat(produto.preco).toFixed(2)}</td>
             <td><span class="${statusClass}">${statusText}</span></td>
         </tr>
         `

@@ -22,58 +22,58 @@
         </div>
     </header>
 
-    <main style="padding: 40px 0; background: #f8f9fa;">
+    <main class="checkout-main">
         <div class="container">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="text-align: center; margin-bottom: 30px;">Finalizar Compra</h2>
+            <div class="checkout-container">
+                <h2 class="checkout-title">Finalizar Compra</h2>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="checkout-grid">
                     <!-- Order Summary -->
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div class="checkout-section">
                         <h3>Resumo do Pedido</h3>
                         <div id="orderSummary">
                             <!-- Cart items will be loaded here -->
                         </div>
-                        <div style="border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px;">
+                        <div class="checkout-summary">
                             <strong>Total: R$ <span id="checkoutTotal">0.00</span></strong>
                         </div>
                     </div>
 
                     <!-- Address Form -->
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div class="checkout-section">
                         <h3>Endereço de Entrega</h3>
                         <form id="checkoutForm">
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="cep">CEP *</label>
                                 <input type="text" id="cep" required placeholder="00000-000">
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="rua">Rua *</label>
                                 <input type="text" id="rua" required placeholder="Nome da rua">
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="numero">Número *</label>
                                 <input type="text" id="numero" required placeholder="123">
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="complemento">Complemento</label>
                                 <input type="text" id="complemento" placeholder="Apto, bloco, etc.">
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="bairro">Bairro *</label>
                                 <input type="text" id="bairro" required placeholder="Nome do bairro">
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="cidade">Cidade *</label>
                                 <input type="text" id="cidade" required placeholder="Nome da cidade">
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="estado">Estado *</label>
                                 <select id="estado" required>
                                     <option value="">Selecione</option>
@@ -107,7 +107,7 @@
                                 </select>
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div class="checkout-form-group">
                                 <label for="pagamento">Forma de Pagamento *</label>
                                 <select id="pagamento" required>
                                     <option value="">Selecione</option>
@@ -117,7 +117,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" style="width: 100%; background: #28a745; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                            <button type="submit" class="checkout-submit-btn">
                                 <i class="fas fa-check"></i> Confirmar Pedido
                             </button>
                         </form>

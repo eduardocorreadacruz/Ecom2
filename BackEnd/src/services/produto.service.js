@@ -1,31 +1,12 @@
 const Produto = require('../models/Produto')
+const Estoque = require('../models/Estoque')
 
-async function criarProduto(dados) {
-
-    const { nome, descricao, modelo, categoria, marca, especificacoes, preco, imagem_url, ativo } = dados
-
-    // Validações simples antes de salvar
-    if (!nome || !modelo || !preco || !categoria || !marca) {
-        throw new Error('Nome, modelo, preço, categoria e marca são obrigatórios')
-    }
-
-    const novoProduto = await Produto.create({
-        nome,
-        descricao,
-        modelo,
-        categoria,
-        marca,
-        especificacoes,
-        preco,
-        imagem_url,
-        ativo
-    })
-
-    return novoProduto
-}
+async function criarProduto(dados){const{nome,descricao,modelo,categoria,marca,especificacoes,preco,imagem_url,ativo}=dados;if(!nome||!modelo||!preco||!categoria||!marca){throw new Error('Nome, modelo, preço, categoria e marca são obrigatórios')}const novoProduto=await Produto.create({nome,descricao,modelo,categoria,marca,especificacoes,preco,imagem_url,ativo});await Estoque.create({idProduto:novoProduto.codProduto,quantidade_atual:0,quantidade_minima:0});return novoProduto}
 
 async function listarProdutos() {
-    const produtos = await Produto.findAll()
+    const produtos = await Produto.findAll({
+        where: { ativo: true }
+    })
     return produtos
 }
 
@@ -45,14 +26,12 @@ async function buscarProdutoPorNome(nome) {
 
 async function atualizarProduto(id, dados) {
 
-    // Buscar o produto no banco
     const produto = await Produto.findByPk(id)
 
     if (!produto) {
         throw new Error('Produto não encontrado')
     }
 
-    // Atualizar apenas os campos enviados
     await produto.update(dados)
 
     return produto
@@ -69,7 +48,6 @@ async function atualizarProdutoCompleto(id, dados) {
 
     const { nome, descricao, modelo, categoria, marca, especificacoes, preco, imagem_url, ativo } = dados
 
-    // Validações básicas
     if (!nome || !modelo || !preco || !categoria || !marca) {
         throw new Error('Nome, modelo, preço, categoria e marca são obrigatórios')
     }
@@ -97,7 +75,7 @@ async function apagarProduto(id) {
         throw new Error('Produto não encontrado')
     }
 
-    await produto.destroy()
+    await produto.update({ ativo: false })
 
     return true
 }

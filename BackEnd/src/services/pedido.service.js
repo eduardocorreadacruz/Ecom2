@@ -22,11 +22,11 @@ async function criarPedido(dados) {
         if (!produto.ativo) {
             throw new Error(`Produto ${produto.nome} não está disponível`)
         }
-        // Verificar estoque (comentado para demo)
-        // const estoque = await Estoque.findOne({ where: { idProduto: item.idProduto } })
-        // if (!estoque || estoque.quantidade_atual < item.quantidade) {
-        //     throw new Error(`Estoque insuficiente para ${produto.nome}`)
-        // }
+        // Verificar estoque
+        const estoque = await Estoque.findOne({ where: { idProduto: item.idProduto } })
+        if (!estoque || estoque.quantidade_atual < item.quantidade) {
+            throw new Error(`Estoque insuficiente para ${produto.nome}`)
+        }
         valorSubtotal += produto.preco * item.quantidade
     }
 
@@ -50,11 +50,11 @@ async function criarPedido(dados) {
             precoUnitario: produto.preco,
             valorTotalItem: produto.preco * item.quantidade
         })
-        // Decrementar estoque (comentado para demo)
-        // await Estoque.decrement('quantidade_atual', {
-        //     by: item.quantidade,
-        //     where: { idProduto: item.idProduto }
-        // })
+        // Decrementar estoque
+        await Estoque.decrement('quantidade_atual', {
+            by: item.quantidade,
+            where: { idProduto: item.idProduto }
+        })
     }
 
     // Criar entrega
