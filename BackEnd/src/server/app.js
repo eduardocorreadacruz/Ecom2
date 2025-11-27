@@ -14,14 +14,12 @@ const authRoutes = require('../routes/auth.routes')
 const produtoRoutes = require('../routes/produto.routes')
 const estoqueRoutes = require('../routes/estoque.routes')
 const pedidoRoutes = require('../routes/pedido.routes')
-const contatoRoutes = require('../routes/contato.routes')
 
 app.use('/usuario', usuarioRoutes)
 app.use('/', authRoutes)
 app.use('/produto', produtoRoutes)
 app.use('/estoque', estoqueRoutes)
 app.use('/pedido', pedidoRoutes)
-app.use('/contato', contatoRoutes)
 
 
 app.get('/', (req, res) => {
