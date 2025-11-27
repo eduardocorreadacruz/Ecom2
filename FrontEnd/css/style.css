@@ -655,23 +655,40 @@ body {
 }
 
 /* Auth Pages */
-.auth-container {
+.auth-container-cad {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, rgba(118, 75, 162, 0.9) 60%, rgba(102, 126, 234, 0.9) 100%), url('../image/Background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+}
+
+.auth-container-log {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 60%, rgba(118, 75, 162, 0.9) 100%), url('../image/Background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 20px;
 }
 
 .auth-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     padding: 40px;
     width: 100%;
     max-width: 400px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .auth-header h1 {
@@ -1305,6 +1322,27 @@ body {
 .admin-status.inactive {
     background: #f8d7da;
     color: #721c24;
+}
+
+.select-btn {
+    background: #17a2b8;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.select-btn:hover {
+    background: #138496;
+}
+
+.info-text {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
 }
 
 @media (max-width: 768px) {
