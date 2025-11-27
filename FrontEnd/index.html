@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="./js/app.js" defer></script>
     <title>TechParts - Peças de Computador</title>
 </head>
@@ -92,6 +93,42 @@
         <button id="adminBtn" class="admin-btn">Painel Admin</button>
     </div>
 
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Fale Conosco</h3>
+                    <p>Tem alguma dúvida ou sugestão? Entre em contato conosco!</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> eduardo_c_cruz@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> (48) 98832-8301</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-btn">Enviar Mensagem</button>
+                </form>
+            </div>
+            <div id="contactResponse" class="contact-response"></div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -112,7 +149,6 @@
                     <h4>Contato</h4>
                     <p><i class="fas fa-envelope"></i> eduardo_c_cruz@gmail.com</p>
                     <p><i class="fas fa-phone"></i> (48) 98832-8301</p>
-                    <p><a href="./html/contato.html" style="color: #ffd700; text-decoration: none;"><i class="fas fa-envelope-open-text"></i> Relatar Problema</a></p>
                 </div>
             </div>
             <div class="footer-bottom">

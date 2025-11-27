@@ -1,13 +1,12 @@
-// API Configuration
-const API_BASE = 'http://localhost:3000'; // Adjust if backend port is different
+const API_BASE = 'http://localhost:3000'
 
-// Global state
 let currentUser = null;
 let cart = [];
 let products = [];
 let filteredProducts = [];
 
-// DOM Elements
+emailjs.init("E0KgjFNp8sivKldt3");
+
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const productsGrid = document.getElementById('productsGrid');
@@ -26,7 +25,6 @@ const logoutBtn = document.getElementById('logoutBtn');
 const adminPanel = document.getElementById('adminPanel');
 const adminBtn = document.getElementById('adminBtn');
 
-// Initialize app
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
@@ -37,15 +35,12 @@ function initApp() {
     loadProducts();
 }
 
-// Setup event listeners
 function setupEventListeners() {
-    // Search
     searchBtn.addEventListener('click', handleSearch);
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleSearch();
     });
 
-    // Navigation categories
     document.querySelectorAll('.nav-list a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -54,20 +49,21 @@ function setupEventListeners() {
         });
     });
 
-    // Cart
     cartBtn.addEventListener('click', openCart);
     document.querySelector('.cart-close').addEventListener('click', closeCart);
 
-    // Auth
     logoutBtn.addEventListener('click', logout);
 
-    // Checkout
     document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
 
-    // Admin
     adminBtn.addEventListener('click', () => window.open('./html/produto.html', '_blank'));
 
-    // Close cart when clicking outside
+    // Contact form event listener
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactForm);
+    }
+
     window.addEventListener('click', (e) => {
         if (e.target === cartSidebar && cartSidebar.classList.contains('open')) {
             closeCart();
@@ -75,7 +71,6 @@ function setupEventListeners() {
     });
 }
 
-// API helper functions
 async function apiRequest(endpoint, options = {}) {
     const config = {
         headers: {
@@ -85,7 +80,6 @@ async function apiRequest(endpoint, options = {}) {
         ...options
     };
 
-    // Add auth token if available
     const token = localStorage.getItem('token');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -128,7 +122,6 @@ function checkAuthStatus() {
     updateUI();
 }
 
-// Product functions
 async function loadProducts() {
     try {
         loading.style.display = 'block';
@@ -218,7 +211,6 @@ function handleSearch() {
 }
 
 function filterByCategory(category) {
-    // Update active nav link
     document.querySelectorAll('.nav-list a').forEach(link => {
         link.classList.remove('active');
     });
@@ -233,7 +225,6 @@ function filterByCategory(category) {
     displayProducts(filteredProducts);
 }
 
-// Cart functions
 function addToCart(productId) {
     if (!currentUser) {
         openModal(loginModal);
@@ -306,17 +297,13 @@ async function handleCheckout() {
         return;
     }
 
-    // Store cart in localStorage for checkout page
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Open checkout in new tab
     window.open('html/checkout.html', '_blank');
 
-    // Close cart sidebar
     closeCart();
 }
 
-// UI functions
 function updateUI() {
     if (currentUser) {
         loginLink.style.display = 'none';
@@ -396,7 +383,6 @@ function viewProductDetails(productId) {
 }
 
 function showMessage(message, type = 'info') {
-    // Simple notification - in a real app, use a proper notification library
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
@@ -437,7 +423,74 @@ function scrollToProducts() {
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Add some CSS animations
+async function handleContactForm(e) {
+    e.preventDefault();
+
+    const contactResponse = document.getElementById('contactResponse');
+    const submitBtn = e.target.querySelector('.contact-btn');
+
+    // Clear previous messages
+    contactResponse.innerHTML = '';
+    contactResponse.className = 'contact-response';
+
+    // Get form data
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Validate form
+    if (!name || !email || !subject || !message) {
+        contactResponse.innerHTML = 'Por favor, preencha todos os campos obrigatórios.';
+        contactResponse.className = 'contact-response error';
+        return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        contactResponse.innerHTML = 'Por favor, insira um email válido.';
+        contactResponse.className = 'contact-response error';
+        return;
+    }
+
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    try {
+        // Prepare template parameters
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+            to_email: 'eduardo_c_cruz@estudante.sesisenai.org.br'
+        };
+
+        // Send email using EmailJS
+        await emailjs.send(
+            "service_2xhp2j6", // Replace with your service ID
+            "asserteddock_template", // Replace with your template ID
+            templateParams
+        );
+
+        // Success
+        contactResponse.innerHTML = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+        contactResponse.className = 'contact-response success';
+        e.target.reset();
+
+    } catch (error) {
+        console.error('Erro ao enviar email:', error);
+        contactResponse.innerHTML = 'Erro ao enviar mensagem. Tente novamente mais tarde.';
+        contactResponse.className = 'contact-response error';
+    } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Mensagem';
+    }
+}
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
