@@ -8,7 +8,7 @@ O TechParts é uma plataforma completa de e-commerce que inclui:
 
 - **Frontend**: Interface responsiva para clientes e administradores
 - **Backend**: API RESTful com autenticação JWT
-- **Banco de Dados**: MySQL/MariaDB com relacionamentos complexos
+- **Banco de Dados**: MySQL com relacionamentos complexos
 - **Funcionalidades**: Catálogo de produtos, carrinho de compras, checkout, gestão de estoque, painel administrativo
 
 ## Funcionalidades
@@ -65,9 +65,9 @@ backend/
 │   ├── utils/           # Utilitários (JWT, validação, criptografia)
 │   ├── db/              # Configuração do banco
 │   └── server/          # Configuração do Express
-├── index.js            # Ponto de entrada
-├── index_local.js      # Versão local (desenvolvimento)
-└── sync.js            # Sincronização do banco
+├── index.js             # Ponto de entrada
+├── index_local.js       # Versão local (desenvolvimento)
+└── sync.js              # Sincronização do banco
 ```
 
 ### Frontend
@@ -95,7 +95,7 @@ frontend/
 - **Node.js** - Runtime JavaScript
 - **Express.js** - Framework web
 - **Sequelize** - ORM para banco de dados
-- **MySQL/MariaDB** - Banco de dados relacional
+- **MySQL** - Banco de dados relacional
 - **JWT** - Autenticação baseada em tokens
 - **bcrypt** - Hash de senhas
 - **CORS** - Controle de acesso cross-origin
@@ -222,14 +222,13 @@ POST   /estoque/:idProduto/remover    # Remover estoque
 
 ### Pré-requisitos
 - Node.js (v14+)
-- MySQL/MariaDB
-- npm ou yarn
+- MySQL
+- npm 
 
 ### 1. Clonagem e Instalação
 ```bash
-git clone <seu-repositorio>
-cd ecom/BackEnd
-npm install
+git clone https://github.com/eduardocorreadacruz/Ecom2.git
+cd BackEnd && npm install 
 ```
 
 ### 2. Configuração do Banco
@@ -254,10 +253,8 @@ node sync.js
 ### 4. Executar o Servidor
 ```bash
 # Produção
-npm start
+npm start || node index.js
 
-# Desenvolvimento (com nodemon)
-npm run dev
 ```
 
 ### 5. Acessar o Sistema
@@ -362,19 +359,6 @@ Cliente → Frontend → API → Controller → Service → Model → Banco
 - Blog/notícias
 - Chat de suporte
 
-## Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-## Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
 ## Autor
 
 **Eduardo Corrêa Da Cruz**
-
-  

@@ -7,7 +7,7 @@ const Entrega = db.define('entrega',{
         primaryKey: true,
         autoIncrement: true
     },
-    idPedido: { // Chave estrangeira
+    idPedido: {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: true, 
