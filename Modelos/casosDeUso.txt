@@ -1,0 +1,249 @@
+CASOS DE USO - FRONTEND E-COMMERCE
+=====================================
+
+1. AUTENTICAÇÃO E REGISTRO
+==========================
+
+1.1 Registro de Usuário
+- Ator: Usuário Visitante
+- Descrição: Usuário cadastra nova conta no sistema
+- Pré-condições: Usuário deve estar na página de registro
+- Fluxo Principal:
+  * Usuário acessa página de registro (register.html)
+  * Preenche formulário com dados pessoais
+  * Sistema valida informações
+  * Conta é criada com sucesso
+- Fluxo Alternativo: Validação falha, exibe erros
+
+1.2 Login
+- Ator: Usuário Registrado
+- Descrição: Usuário acessa sua conta
+- Pré-condições: Usuário deve ter conta cadastrada
+- Fluxo Principal:
+  * Usuário acessa página de login (login.html)
+  * Insere email e senha
+  * Sistema autentica credenciais
+  * Usuário é redirecionado para área logada
+- Fluxo Alternativo: Credenciais inválidas, exibe mensagem de erro
+
+2. GESTÃO DE USUÁRIO
+===================
+
+2.1 Visualizar Perfil
+- Ator: Usuário Logado
+- Descrição: Usuário visualiza seus dados pessoais
+- Pré-condições: Usuário deve estar logado
+- Fluxo Principal:
+  * Acessa página de usuário (usuario.html)
+  * Visualiza informações pessoais
+  * Pode editar dados se necessário
+
+2.2 Atualizar Dados Pessoais
+- Ator: Usuário Logado
+- Descrição: Usuário modifica informações do perfil
+- Fluxo Principal:
+  * Na página de usuário, clica em editar
+  * Modifica dados desejados
+  * Salva alterações
+  * Sistema confirma atualização
+
+3. GESTÃO DE PRODUTOS
+====================
+
+3.1 Cadastrar Produto (Admin)
+- Ator: Administrador
+- Descrição: Admin adiciona novo produto ao catálogo
+- Pré-condições: Usuário deve ser admin logado
+- Fluxo Principal:
+  * Acessa página de cadastro de produto (produto.html)
+  * Preenche dados do produto (nome, descrição, preço, categoria)
+  * Upload de imagens
+  * Produto é adicionado ao catálogo
+- Arquivo JavaScript: cadProduto.js
+
+3.2 Consultar Produtos
+- Ator: Usuário
+- Descrição: Usuário busca e visualiza produtos
+- Fluxo Principal:
+  * Acessa página de consulta (consultaProd.html)
+  * Utiliza filtros de busca
+  * Visualiza lista de produtos
+  * Seleciona produto para detalhes
+- Arquivo JavaScript: consProduto.js
+
+3.3 Atualizar Produto (Admin)
+- Ator: Administrador
+- Descrição: Admin modifica dados de produto existente
+- Pré-condições: Usuário deve ser admin
+- Fluxo Principal:
+  * Acessa página de atualização (atualProd.html)
+  * Seleciona produto para editar
+  * Modifica informações necessárias
+  * Salva alterações
+- Arquivo JavaScript: atualProduto.js
+
+3.4 Deletar Produto (Admin)
+- Ator: Administrador
+- Descrição: Admin remove produto do catálogo
+- Pré-condições: Usuário deve ser admin
+- Fluxo Principal:
+  * Acessa página de exclusão (delProd.html)
+  * Seleciona produto para deletar
+  * Confirma exclusão
+  * Produto é removido do sistema
+- Arquivo JavaScript: delProduto.js
+
+4. GESTÃO DE ESTOQUE
+===================
+
+4.1 Cadastrar Estoque
+- Ator: Administrador
+- Descrição: Admin registra entrada de produtos no estoque
+- Pré-condições: Usuário deve ser admin
+- Fluxo Principal:
+  * Acessa página de cadastro de estoque (estoque.html)
+  * Seleciona produto
+  * Insere quantidade
+  * Registra entrada no estoque
+- Arquivo JavaScript: cadEstoque.js
+
+4.2 Listar Estoque
+- Ator: Administrador
+- Descrição: Admin visualiza relatório de estoque
+- Fluxo Principal:
+  * Acessa página de listagem (listEstoq.html)
+  * Visualiza produtos e quantidades
+  * Filtra por categoria/produto se necessário
+- Arquivo JavaScript: listEstoque.js
+
+5. CARRINHO DE COMPRAS E CHECKOUT
+=================================
+
+5.1 Adicionar ao Carrinho
+- Ator: Usuário
+- Descrição: Usuário adiciona produtos ao carrinho
+- Fluxo Principal:
+  * Na página de produto, clica "Adicionar ao Carrinho"
+  * Seleciona quantidade
+  * Produto é adicionado ao carrinho
+  * Sistema atualiza total
+
+5.2 Visualizar Carrinho
+- Ator: Usuário
+- Descrição: Usuário revisa produtos no carrinho
+- Fluxo Principal:
+  * Acessa ícone do carrinho
+  * Visualiza produtos adicionados
+  * Pode alterar quantidades
+  * Pode remover produtos
+
+5.3 Checkout
+- Ator: Usuário Logado
+- Descrição: Finaliza compra e define entrega
+- Pré-condições: Usuário deve estar logado e ter produtos no carrinho
+- Fluxo Principal:
+  * Acessa página de checkout (checkout.html)
+  * Revisa itens do carrinho
+  * Seleciona endereço de entrega
+  * Escolhe forma de pagamento
+  * Confirma pedido
+- Arquivo JavaScript: checkout.js
+
+6. CONTATO E SUPORTE
+===================
+
+6.1 Entrar em Contato
+- Ator: Usuário
+- Descrição: Usuário envia mensagem para suporte
+- Fluxo Principal:
+  * Acessa página de contato (contato.html)
+  * Preenche formulário (nome, email, mensagem)
+  * Envia mensagem
+  * Sistema confirma envio
+- Arquivo JavaScript: contato.js
+
+7. NAVEGAÇÃO E INTERFACE
+========================
+
+7.1 Navegação Principal
+- Ator: Todos os usuários
+- Descrição: Navegação entre páginas principais
+- Fluxo Principal:
+  * Acessa página inicial (index.html)
+  * Utiliza menu de navegação
+  * Acessa diferentes seções do site
+- Arquivo JavaScript: app.js
+
+7.2 Responsividade
+- Ator: Todos os usuários
+- Descrição: Interface se adapta a diferentes dispositivos
+- Fluxo Principal:
+  * Site detecta tamanho da tela
+  * Layout se adapta automaticamente
+  * Menu mobile é ativado se necessário
+
+8. FUNCIONALIDADES ADMINISTRATIVAS
+==================================
+
+8.1 Dashboard Admin
+- Ator: Administrador
+- Descrição: Admin acessa área administrativa
+- Fluxo Principal:
+  * Login como administrador
+  * Acesso a todas as funcionalidades admin
+  * Visualização de relatórios e estatísticas
+
+8.2 Gestão de Usuários
+- Ator: Administrador
+- Descrição: Admin gerencia contas de usuários
+- Fluxo Principal:
+  * Lista todos os usuários
+  * Pode ativar/desativar contas
+  * Visualiza histórico de compras
+
+9. CASOS DE USO DE EXCEÇÃO
+==========================
+
+9.1 Sessão Expirada
+- Descrição: Usuário perde sessão durante uso
+- Fluxo:
+  * Sistema detecta sessão expirada
+  * Redireciona para login
+  * Usuário deve fazer login novamente
+
+9.2 Erro de Conexão
+- Descrição: Falha na comunicação com servidor
+- Fluxo:
+  * Sistema exibe mensagem de erro
+  * Oferece opção de retry
+  * Usuário pode tentar novamente
+
+9.3 Produto Indisponível
+- Descrição: Produto fica sem estoque durante compra
+- Fluxo:
+  * Sistema detecta indisponibilidade
+  * Remove produto do carrinho
+  * Informa usuário sobre indisponibilidade
+
+10. REQUISITOS NÃO FUNCIONAIS
+=============================
+
+10.1 Usabilidade
+- Interface intuitiva e fácil de usar
+- Tempo de carregamento máximo de 3 segundos
+- Compatibilidade com navegadores modernos
+
+10.2 Acessibilidade
+- Suporte a leitores de tela
+- Contraste adequado para leitura
+- Navegação por teclado
+
+10.3 Segurança
+- Dados sensíveis protegidos
+- Validação client-side e server-side
+- Autenticação segura
+
+=====================================
+Casos de uso documentados em: 28/11/2025
+Sistema: E-commerce Frontend
+Versão: 1.0
