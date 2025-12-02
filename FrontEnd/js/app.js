@@ -1,4 +1,5 @@
-const API_BASE = 'http://localhost:3000'
+// A API_BASE será definida automaticamente pelo arquivo config.js
+// que é carregado antes deste arquivo
 
 let currentUser = null;
 let cart = [];
