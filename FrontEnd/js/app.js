@@ -65,7 +65,7 @@ function setupEventListeners() {
     document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
 
     // Admin
-    adminBtn.addEventListener('click', () => window.open('./html/produto.html', '_blank'));
+    adminBtn.addEventListener('click', () => window.open('./FrontEnd/html/produto.html', '_blank'));
 
     // Close cart when clicking outside
     window.addEventListener('click', (e) => {

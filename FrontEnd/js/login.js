@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', async (e) => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.usuario));
             localStorage.setItem('statusLog', 'true');
-            window.location.href = '../index.html';
+            window.location.href = '../../index.html';
         } else {
             alert(data.erro || 'Erro no login');
         }
