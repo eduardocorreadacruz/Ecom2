@@ -14,7 +14,7 @@ const authRoutes = require('../routes/auth.routes')
 const produtoRoutes = require('../routes/produto.routes')
 const estoqueRoutes = require('../routes/estoque.routes')
 const pedidoRoutes = require('../routes/pedido.routes')
-const initRoutes = require('../routes/init.routes') // Rota temporária para setup
+// Rotas temporárias removidas - init.routes.js excluído
 
 app.use('/usuario', usuarioRoutes)
 app.use('/', authRoutes)
@@ -22,8 +22,7 @@ app.use('/produto', produtoRoutes)
 app.use('/estoque', estoqueRoutes)
 app.use('/pedido', pedidoRoutes)
 
-// ROTAS TEMPORÁRIAS PARA SETUP - REMOVER APÓS USAR
-app.use('/', initRoutes)
+// Rotas temporárias removidas - init.routes.js excluído
 
 
 app.get('/', (req, res) => {

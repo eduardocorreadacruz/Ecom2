@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return
             }
 
-            fetch(`http://localhost:3000/produto/${codProduto}`,{
+            fetch(`${API_BASE}/produto/${codProduto}`,{
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadProdutos() {
-        fetch(`http://localhost:3000/produto`, {
+        fetch(`${API_BASE}/produto`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
     // Functions to load products
     function loadProdutosAtivos() {
-        fetch(`http://localhost:3000/produto`, {
+        fetch(`${API_BASE}/produto`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     }
 
     function loadProdutosInativos() {
-        fetch(`http://localhost:3000/produto?status=inativos`, {
+        fetch(`${API_BASE}/produto?status=inativos`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 ativo: true
             }
 
-            fetch(`http://localhost:3000/produto`,{
+            fetch(`${API_BASE}/produto`,{
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             }
 
             const endpoint = acao === 'adicionar' ? 'adicionar' : 'remover'
-            const url = `http://localhost:3000/estoque/${produtoId}/${endpoint}`
+            const url = `${API_BASE}/estoque/${produtoId}/${endpoint}`
             console.log('URL:', url)
 
             fetch(url, {
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 return
             }
 
-            fetch(`http://localhost:3000/produto/${produtoId}`, {
+            fetch(`${API_BASE}/produto/${produtoId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,

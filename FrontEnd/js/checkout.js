@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/pedido', {
+            const response = await fetch(`${API_BASE}/pedido`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

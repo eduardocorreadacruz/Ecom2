@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('Buscando produto:', valores)
 
-            fetch(`http://localhost:3000/produto/buscar`,{
+            fetch(`${API_BASE}/produto/buscar`,{
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

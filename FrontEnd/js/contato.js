@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('Enviando relatório:', dadosContato)
 
-            fetch(`http://localhost:3000/contato`, {
+            fetch(`${API_BASE}/contato`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

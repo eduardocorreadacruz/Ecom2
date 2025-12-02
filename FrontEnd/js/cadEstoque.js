@@ -9,7 +9,7 @@ console.log('statusLog',statusLog)
 
 if (statusLog === 'true') {
     onload = () => {
-        fetch(`http://localhost:3000/produto?statusLog=${statusLog}`)
+        fetch(`${API_BASE}/produto?statusLog=${statusLog}`)
         .then(resp => resp.json())
         .then(dados => {
             console.log(dados)
@@ -39,7 +39,7 @@ if (statusLog === 'true') {
             qtdeMov: qtdeMov
         }
 
-        fetch(`http://localhost:3000/estoque?statusLog=${statusLog}`,{
+        fetch(`${API_BASE}/estoque?statusLog=${statusLog}`,{
             method: 'POST',
             headers: { 'Content-Type':'application/json'},
             body: JSON.stringify(valores)

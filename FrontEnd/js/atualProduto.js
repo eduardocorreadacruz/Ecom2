@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ativo: ativo
             }
 
-            fetch(`http://localhost:3000/produto/${codProduto}`,{
+            fetch(`${API_BASE}/produto/${codProduto}`,{
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
