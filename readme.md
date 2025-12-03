@@ -1,57 +1,57 @@
-# 🛒 TechParts E-Commerce - Sistema Completo
+# TechParts E-Commerce - Sistema Completo
 
 Um sistema completo de e-commerce para venda de peças de computador, desenvolvido com arquitetura moderna e escalável.
 
-## 📋 Visão Geral
+## Visão Geral
 
 O TechParts é uma plataforma completa de e-commerce que inclui:
 
 - **Frontend**: Interface responsiva para clientes e administradores
 - **Backend**: API RESTful com autenticação JWT
-- **Banco de Dados**: MySQL/MariaDB com relacionamentos complexos
+- **Banco de Dados**: MySQL com relacionamentos complexos
 - **Funcionalidades**: Catálogo de produtos, carrinho de compras, checkout, gestão de estoque, painel administrativo
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-### 👤 Usuários
+### Usuários
 - Cadastro e login de usuários
 - Autenticação JWT
 - Perfis de usuário (Cliente/Administrador)
 - Validação de CPF
 
-### 🛍️ Produtos
+### Produtos
 - Catálogo completo de peças de computador
 - Categorias: CPU, GPU, RAM, Placa-Mãe, SSD, HDD, Fonte, Gabinete, Cooler
 - Pesquisa e filtros por categoria
 - Detalhes técnicos dos produtos
 - Imagens e descrições
 
-### 🛒 Carrinho e Checkout
+### Carrinho e Checkout
 - Carrinho de compras persistente
 - Sistema de checkout completo
 - Cálculo automático de frete
 - Validação de estoque em tempo real
 - Endereço de entrega com ViaCEP
 
-### 📦 Gestão de Estoque
+### Gestão de Estoque
 - Controle de quantidade por produto
 - Alertas de estoque baixo
 - Movimentação de entrada/saída
 - Integração automática com vendas
 
-### 👨‍💼 Painel Administrativo
+### Painel Administrativo
 - Gestão completa de produtos (CRUD)
 - Controle de estoque
 - Gerenciamento de pedidos
 - Relatórios e estatísticas
 
-### 📊 Pedidos
+### Pedidos
 - Histórico completo de pedidos
 - Rastreamento de status
 - Detalhes de entrega
 - Validação de estoque antes da venda
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 ### Backend
 ```
@@ -65,9 +65,9 @@ backend/
 │   ├── utils/           # Utilitários (JWT, validação, criptografia)
 │   ├── db/              # Configuração do banco
 │   └── server/          # Configuração do Express
-├── index.js            # Ponto de entrada
-├── index_local.js      # Versão local (desenvolvimento)
-└── sync.js            # Sincronização do banco
+├── index.js             # Ponto de entrada
+├── index_local.js       # Versão local (desenvolvimento)
+└── sync.js              # Sincronização do banco
 ```
 
 ### Frontend
@@ -89,13 +89,13 @@ frontend/
     └── outros...
 ```
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Backend
 - **Node.js** - Runtime JavaScript
 - **Express.js** - Framework web
 - **Sequelize** - ORM para banco de dados
-- **MySQL/MariaDB** - Banco de dados relacional
+- **MySQL** - Banco de dados relacional
 - **JWT** - Autenticação baseada em tokens
 - **bcrypt** - Hash de senhas
 - **CORS** - Controle de acesso cross-origin
@@ -111,11 +111,11 @@ frontend/
 - **Git** - Controle de versão
 - **VS Code** - Ambiente de desenvolvimento
 
-## 📊 Modelo de Dados
+## Modelo de Dados
 
 ### Principais Tabelas
 
-#### 👤 Usuários (`usuarios`)
+#### Usuários (`usuarios`)
 ```sql
 - codUsuario (PK)
 - nome
@@ -128,7 +128,7 @@ frontend/
 - createdAt/updatedAt
 ```
 
-#### 🛍️ Produtos (`produtos`)
+#### Produtos (`produtos`)
 ```sql
 - codProduto (PK)
 - nome
@@ -142,7 +142,7 @@ frontend/
 - createdAt/updatedAt
 ```
 
-#### 📦 Estoque (`estoques`)
+#### Estoque (`estoques`)
 ```sql
 - codEstoque (PK)
 - idProduto (FK → produtos)
@@ -151,7 +151,7 @@ frontend/
 - createdAt/updatedAt
 ```
 
-#### 🛒 Pedidos (`pedidos`)
+#### Pedidos (`pedidos`)
 ```sql
 - codPedido (PK)
 - idUsuario (FK → usuarios)
@@ -162,7 +162,7 @@ frontend/
 - createdAt/updatedAt
 ```
 
-#### 📋 Itens do Pedido (`itens_pedidos`)
+#### Itens do Pedido (`itens_pedidos`)
 ```sql
 - codItemPedido (PK)
 - idPedido (FK → pedidos)
@@ -172,7 +172,7 @@ frontend/
 - valorTotalItem
 ```
 
-#### 🚚 Entregas (`entregas`)
+#### Entregas (`entregas`)
 ```sql
 - codEntrega (PK)
 - idPedido (FK → pedidos)
@@ -185,7 +185,7 @@ frontend/
 - uf
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Autenticação
 ```
@@ -218,18 +218,17 @@ POST   /estoque/:idProduto/adicionar  # Adicionar estoque
 POST   /estoque/:idProduto/remover    # Remover estoque
 ```
 
-## 🚀 Como Executar
+## Como Executar
 
 ### Pré-requisitos
 - Node.js (v14+)
-- MySQL/MariaDB
-- npm ou yarn
+- MySQL
+- npm 
 
 ### 1. Clonagem e Instalação
 ```bash
-git clone <seu-repositorio>
-cd ecom/BackEnd
-npm install
+git clone https://github.com/eduardocorreadacruz/Ecom2.git
+cd BackEnd && npm install 
 ```
 
 ### 2. Configuração do Banco
@@ -254,10 +253,8 @@ node sync.js
 ### 4. Executar o Servidor
 ```bash
 # Produção
-npm start
+npm start || node index.js
 
-# Desenvolvimento (com nodemon)
-npm run dev
 ```
 
 ### 5. Acessar o Sistema
@@ -265,7 +262,7 @@ npm run dev
 - **API**: `http://localhost:3000`
 - **Admin**: Acesse com usuário do tipo ADMIN
 
-## 🧪 Testando a API
+## Testando a API
 
 ### Exemplo: Cadastro de Usuário
 ```bash
@@ -308,7 +305,7 @@ Content-Type: application/json
 }
 ```
 
-## 🎨 Interface do Usuário
+## Interface do Usuário
 
 ### Página Principal
 - Catálogo de produtos com filtros por categoria
@@ -328,7 +325,7 @@ Content-Type: application/json
 3. Checkout com endereço
 4. Confirmação do pedido
 
-## 🔒 Segurança
+## Segurança
 
 - **Hash de Senhas**: bcrypt para armazenamento seguro
 - **JWT Tokens**: Autenticação stateless
@@ -336,21 +333,21 @@ Content-Type: application/json
 - **Middleware de Autenticação**: Proteção de rotas
 - **Autorização**: Controle de acesso por tipo de usuário
 
-## 📱 Responsividade
+## Responsividade
 
 O frontend é totalmente responsivo, funcionando perfeitamente em:
 - Desktop (1200px+)
 - Tablet (768px - 1199px)
 - Mobile (320px - 767px)
 
-## 🔄 Fluxo de Dados
+## Fluxo de Dados
 
 ```
 Cliente → Frontend → API → Controller → Service → Model → Banco
        ←         ←     ←          ←        ←      ←
 ```
 
-## 📈 Funcionalidades Futuras
+## Funcionalidades Futuras
 
 - Sistema de avaliações e comentários
 - Lista de desejos (wishlist)
@@ -362,20 +359,6 @@ Cliente → Frontend → API → Controller → Service → Model → Banco
 - Blog/notícias
 - Chat de suporte
 
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 👨‍💻 Autor
+## Autor
 
 **Eduardo Corrêa Da Cruz**
-
----

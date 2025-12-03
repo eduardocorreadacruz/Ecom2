@@ -32,7 +32,7 @@ const ItemPedido = db.define('itemPedido',{
         type: DataTypes.DECIMAL(10,2), 
         allowNull: false
     },
-    valorTotalItem: { // O valor total da linha: quantidade * precoUnitario
+    valorTotalItem: {
         type: DataTypes.DECIMAL(10,2),
         allowNull: false,
         defaultValue: 0.00
@@ -43,7 +43,7 @@ const ItemPedido = db.define('itemPedido',{
         unique: true,
         fields: ['idPedido', 'idProduto']
     }],
-    timestamps: false, // Geralmente desativado em tabelas N:N puras 
+    timestamps: false,
     tableName: 'itens_pedidos'
 })
 

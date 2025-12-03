@@ -27,7 +27,6 @@ const Estoque = db.define('estoque',{
         defaultValue: 0 // Quantidade mínima
     }
 },{
-    // ALTERADO: Manter timestamps (createdAt e updatedAt) é útil para auditoria do estoque
     timestamps: true, 
     tableName: 'estoques'
 })

@@ -4,7 +4,6 @@ async function login(req, res) {
     try {
         const { email, senha } = req.body
 
-        // chama o service
         const resultado = await authService.login({ email, senha })
 
         return res.status(200).json({

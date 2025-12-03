@@ -6,9 +6,6 @@ yarn-error.log
 *.log
 /logs
 
-# Variáveis de Ambiente
-.env
-
 # Cache do npm
 .npm/
 

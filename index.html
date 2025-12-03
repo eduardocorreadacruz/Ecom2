@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./FrontEnd/css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<<<<<<< HEAD:index.html
     <script src="./FrontEnd/js/app.js" defer></script>
+=======
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="shortcut icon" href="./image/Favicon.png" type="image/x-icon">
+    <script src="./js/config.js"></script>
+    <script src="./js/app.js" defer></script>
+>>>>>>> 52e3ed124abfda467036e579b9f9e9aa735984d0:FrontEnd/index.html
     <title>TechParts - Peças de Computador</title>
 </head>
 <body>
@@ -88,21 +95,45 @@
         </div>
     </div>
 
-
-    <div id="productModal" class="modal">
-        <div class="modal-content large-modal">
-            <div class="modal-header">
-                <h3 id="productModalTitle">Detalhes do Produto</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body" id="productDetails">
-            </div>
-        </div>
-    </div>
-
     <div id="adminPanel" style="display: none">
         <button id="adminBtn" class="admin-btn">Painel Admin</button>
     </div>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Fale Conosco</h3>
+                    <p>Tem alguma dúvida ou sugestão? Entre em contato conosco!</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> eduardo_c_cruz@estudante.sesisenai.org.br</p>
+                        <p><i class="fas fa-phone"></i> (48) 98832-8301</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-btn">Enviar Mensagem</button>
+                </form>
+            </div>
+            <div id="contactResponse" class="contact-response"></div>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="container">
@@ -122,8 +153,8 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contato</h4>
-                    <p><i class="fas fa-envelope"></i> contato@techparts.com</p>
-                    <p><i class="fas fa-phone"></i> (11) 9999-9999</p>
+                    <p><i class="fas fa-envelope"></i> eduardo_c_cruz@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (48) 98832-8301</p>
                 </div>
             </div>
             <div class="footer-bottom">

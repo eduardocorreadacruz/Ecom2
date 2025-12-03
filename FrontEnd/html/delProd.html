@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/config.js"></script>
     <script src="../js/delProduto.js" defer></script>
     <title>Sistema</title>
 </head>
@@ -27,7 +28,7 @@
         <ul>
             <li><a href="./produto.html">Gestão Produto</a></li>
             <li><a href="./atualProd.html">Atualizar Produto</a></li>
-            <li><a href="./delProd.html" class="active">Apagar Produto</a></li>
+            <li><a href="./delProd.html" class="active">Desativar Produto</a></li>
             <li><a href="./consultaProd.html">Consultar Produto</a></li>
             <li><a href="index.html">Voltar ao Site</a></li>
         </ul>
@@ -35,8 +36,8 @@
     <main class="admin-main">
         <div class="admin-container">
             <section class="admin-section">
-                <h2><i class="fas fa-trash-alt"></i> Apagar Produto</h2>
-                <p class="warning-text">⚠️ Atenção: Esta ação não pode ser desfeita. O produto será removido permanentemente do sistema.</p>
+                <h2><i class="fas fa-eye-slash"></i> Desativar Produto</h2>
+                <p class="warning-text">⚠️ Atenção: O produto será desativado e não aparecerá mais na loja, mas permanecerá no histórico de pedidos para preservar a integridade dos dados.</p>
                 <form class="admin-form">
                     <div class="admin-form-group">
                         <label for="codProduto">Código do Produto *</label>
@@ -45,11 +46,19 @@
 
                     <div class="admin-form-group">
                         <button type="submit" id="delProd" class="admin-btn delete-btn">
-                            <i class="fas fa-trash"></i> Apagar Produto
+                            <i class="fas fa-eye-slash"></i> Desativar Produto
                         </button>
                     </div>
                 </form>
                 <div id="resProd" class="admin-message"></div>
+            </section>
+
+            <section class="admin-section">
+                <h2><i class="fas fa-list"></i> Produtos Ativos</h2>
+                <p class="info-text">Selecione um produto da lista abaixo para desativar:</p>
+                <div class="admin-table-container">
+                    <div id="resTabela"></div>
+                </div>
             </section>
         </div>
     </main>

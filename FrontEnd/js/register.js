@@ -1,5 +1,4 @@
-// API Configuration
-const API_BASE = 'http://localhost:3000'; // Adjust if backend port is different
+// API Configuration - Using config.js
 
 // DOM Elements
 const registerForm = document.getElementById('registerForm');

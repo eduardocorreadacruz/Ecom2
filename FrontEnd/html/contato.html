@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/config.js"></script>
+    <script src="../js/contato.js" defer></script>
+    <title>Contato - TechParts</title>
+</head>
+
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-header-content">
+                <div class="admin-logo">
+                    <h1><i class="fas fa-envelope"></i> TechParts - Contato</h1>
+                </div>
+                <div class="admin-user-info">
+                    <span id="userName"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="admin-nav">
+        <ul>
+            <li><a href="./produto.html">Gestão Produto</a></li>
+            <li><a href="./atualProd.html">Atualizar Produto</a></li>
+            <li><a href="./delProd.html">Desativar Produto</a></li>
+            <li><a href="./consultaProd.html">Consultar Produto</a></li>
+            <li><a href="./contato.html" class="active">Contato</a></li>
+            <li><a href="../index.html">Voltar ao Site</a></li>
+        </ul>
+    </nav>
+
+    <main class="admin-main">
+        <div class="admin-container">
+            <section class="admin-section">
+                <h2><i class="fas fa-envelope"></i> Relatar Problema</h2>
+                <p class="info-text">Use este formulário para relatar erros, bugs ou solicitar suporte técnico. Os dados serão registrados no sistema.</p>
+
+                <form class="admin-form" id="contatoForm">
+                    <div class="admin-form-group">
+                        <label for="assunto">Assunto *</label>
+                        <select id="assunto" required>
+                            <option value="">Selecione o tipo de problema</option>
+                            <option value="erro_produto">Erro com produto</option>
+                            <option value="erro_pedido">Erro com pedido</option>
+                            <option value="erro_sistema">Erro no sistema</option>
+                            <option value="erro_estoque">Erro no estoque</option>
+                            <option value="sugestao">Sugestão de melhoria</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="titulo">Título do Problema *</label>
+                        <input type="text" id="titulo" required placeholder="Breve descrição do problema">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="descricao">Descrição Detalhada *</label>
+                        <textarea id="descricao" required rows="6" placeholder="Descreva o problema em detalhes, incluindo passos para reproduzir o erro..."></textarea>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="urgencia">Nível de Urgência</label>
+                        <select id="urgencia">
+                            <option value="baixa">Baixa</option>
+                            <option value="media">Média</option>
+                            <option value="alta">Alta</option>
+                            <option value="critica">Crítica</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-form-group admin-form-group-full">
+                        <button type="submit" class="admin-btn">
+                            <i class="fas fa-paper-plane"></i> Enviar Relatório
+                        </button>
+                    </div>
+                </form>
+
+                <div id="resContato" class="admin-message"></div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -12,7 +12,7 @@ if (statusLog === 'true') {
     listEstoq.addEventListener('click', (e) => {
         e.preventDefault()
 
-        fetch(`http://localhost:3000/estoque?statusLog=${statusLog}`)
+        fetch(`${API_BASE}/estoque?statusLog=${statusLog}`)
         .then(resp => resp.json())
         .then(dados => {
             console.log(dados)

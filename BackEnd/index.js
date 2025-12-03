@@ -13,9 +13,21 @@ async function startServer() {
       await conn.sync({ alter: true })
       console.log('Banco sincronizado (dev) com { alter: true }');
     } else {
-
+      // Em produção, primeiro tenta autenticar
       await conn.authenticate()
       console.log('Banco autenticado (produção)')
+      
+      // Depois verifica se as tabelas existem, se não, cria elas
+      try {
+        const [results] = await conn.query('SHOW TABLES')
+        if (results.length === 0) {
+          console.log('Nenhuma tabela encontrada. Criando tabelas...')
+          await conn.sync({ alter: true })
+          console.log('Tabelas criadas automaticamente!')
+        }
+      } catch (checkError) {
+        console.log('Verificando tabelas...', checkError.message)
+      }
     }
 
     app.listen(PORT, HOST, () => {
