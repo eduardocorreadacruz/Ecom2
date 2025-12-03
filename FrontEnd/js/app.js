@@ -57,12 +57,8 @@ function setupEventListeners() {
 
     document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
 
-<<<<<<< HEAD
     // Admin
     adminBtn.addEventListener('click', () => window.open('./FrontEnd/html/produto.html', '_blank'));
-=======
-    adminBtn.addEventListener('click', () => window.open('./html/produto.html', '_blank'));
->>>>>>> 52e3ed124abfda467036e579b9f9e9aa735984d0
 
     // Contact form event listener
     const contactForm = document.getElementById('contactForm');
@@ -305,7 +301,7 @@ async function handleCheckout() {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    window.open('html/checkout.html', '_blank');
+    window.open('./FrontEnd/html/checkout.html', '_blank');
 
     closeCart();
 }
